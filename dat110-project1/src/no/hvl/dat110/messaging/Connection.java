@@ -9,7 +9,7 @@ import no.hvl.dat110.TODO;
 
 public class Connection {
 	
-	// Hei :)
+
 
 	private DataOutputStream outStream; // for writing bytes to the underlying TCP connection
 	private DataInputStream inStream; // for reading bytes from the underlying TCP connection
@@ -32,11 +32,13 @@ public class Connection {
 		}
 	}
 
-	public void send(Message message) {
+	public void send(Message message) throws IOException {
 
 		// TODO
 		// encapsulate the data contained in the message and write to the output stream
 		// Hint: use the encapsulate method on the message
+	byte [] messageEncapsulated= message.encapsulate();
+	outStream.write(messageEncapsulated);
 		throw new UnsupportedOperationException(TODO.method());
 
 	}
