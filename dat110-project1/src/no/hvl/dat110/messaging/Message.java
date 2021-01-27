@@ -51,7 +51,7 @@ public class Message {
 			payloadNew[i] = received[i+1];
 		
 		// A: oppdaterer objektvariabelen payload
-		
+		this.payload= payloadNew;
 
 		// TODO
 		// decapsulate the data contained in the received byte array and store it 
