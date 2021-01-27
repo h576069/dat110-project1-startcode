@@ -1,5 +1,6 @@
 package no.hvl.dat110.rpc;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import no.hvl.dat110.TODO;
@@ -29,7 +30,11 @@ public class RPCServer {
 		
 		System.out.println("RPC SERVER RUN - Services: " + services.size());
 		
-		connection = msgserver.accept(); 
+		try {
+			connection = msgserver.accept();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
 		
 		System.out.println("RPC SERVER ACCEPTED");
 		
@@ -41,7 +46,11 @@ public class RPCServer {
 		   
 		   // TODO
 		   // - receive message containing RPC request
+		   Message m = connection.receive();
 		   // - find the identifier for the RPC methods to invoke
+		   byte[] allData = m.getData();
+		   rpcid = allData[0];
+		   
 		   // - lookup the method to be invoked
 		   // - invoke the method
 		   // - send back message containing RPC reply
