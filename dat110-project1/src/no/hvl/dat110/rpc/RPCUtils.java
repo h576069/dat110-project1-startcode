@@ -1,5 +1,6 @@
 package no.hvl.dat110.rpc;
 
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 import no.hvl.dat110.TODO;
@@ -81,40 +82,37 @@ public class RPCUtils {
 
 		// A: setter inn rpcid:
 		encoded[0] = rpcid;
-		byte b = ((Integer) x).byteValue();
-
-		byte[] result = new byte[4];
-
-		result[0] = (byte) (x >> 24);
-		result[1] = (byte) (x >> 16);
-		result[2] = (byte) (x >> 8);
-		result[3] = (byte) (x /* >> 0 */);
-
-		System.out.println("int = " + x);
-		System.out.println("int som byte = " + ((Integer) x).byteValue());
-		System.out.println("int igjen = " + ((Byte) b).intValue());
-		System.out.println("evt: " + result[0] + ", " + result[1] + ", " + result[2] + ", " + result[3] + ", ");
 		
-		System.out.println("tilbake: :(");
-		// TODO: marshall RPC identifier and string into byte array
-
-//		if (true) {
-//			throw new UnsupportedOperationException(TODO.method());
-//		}
-
+		// A: Bruker ByteBuffer:
+		ByteBuffer bb = ByteBuffer.allocate(4);
+		bb.putInt(x);
+		// A: henter ut byte array
+		byte[] byteInt = bb.array();
+		
+		// A: limer inn byte array verdiene til encoded
+		for (int i = 1; i < encoded.length; i++) {
+			encoded[i] = byteInt[i-1];
+		}
+		
 		return encoded;
 	}
 
 	public static int unmarshallInteger(byte[] data) {
-
-		int decoded;
-
-		// TODO: unmarshall integer contained in data
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
+		// A: henter først ut rpcid
+		byte rpcid = data[0];
+		
+		// A: henter ut dataene:
+		byte[] intData = new byte[data.length - 1];
+		for (int i = 1; i < data.length; i++) {
+			intData[i-1] = data[i];
 		}
-
+		
+		// A: Bruker ByteBuffer
+		ByteBuffer bb = ByteBuffer.wrap(intData);
+		
+		// A: Henter ut heltallet.
+		int decoded = bb.getInt();
+		
 		return decoded;
 
 	}
