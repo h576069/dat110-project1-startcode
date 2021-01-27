@@ -8,6 +8,7 @@ import no.hvl.dat110.messaging.Message;
 import no.hvl.dat110.messaging.MessagingServer;
 
 public class RPCServer {
+	// Hei:)
 
 	private MessagingServer msgserver;
 	private Connection connection;
