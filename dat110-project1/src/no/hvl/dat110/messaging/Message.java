@@ -9,7 +9,10 @@ public class Message {
 	private byte[] payload;
 
 	public Message(byte[] payload) {
-		this.payload = payload; // TODO: check for length within boundary
+		// Payload har maks lengde på 127 byte
+		if (payload.length <= 127)
+			this.payload = payload; 
+		// A: hva hvis den er større?
 	}
 
 	public Message() {
@@ -22,14 +25,22 @@ public class Message {
 
 	public byte[] encapsulate() {
 		
-		byte[] encoded = null;
+//		byte[] encoded = null;
+		// A: setter lengden på payload til første byte
+		byte [] encoded = new byte[128];
+		encoded[0] = ((Integer) this.payload.length).byteValue();
+		
+		// A: setter inn resten av byte-elementene fra payload til encoded
+		for (int i = 0; i < this.payload.length; i++) {
+			encoded[i+1] = this.payload[i];
+		}
 		
 		// TODO
 		// encapulate/encode the payload of this message in the
 		// encoded byte array according to message format
 		
-		if (true)
-		   throw new UnsupportedOperationException(TODO.method());
+//		if (true)
+//		   throw new UnsupportedOperationException(TODO.method());
 
 		return encoded;
 		
