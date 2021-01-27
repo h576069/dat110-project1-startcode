@@ -1,9 +1,5 @@
 package no.hvl.dat110.messaging;
 
-import java.util.Arrays;
-
-import no.hvl.dat110.TODO;
-
 public class Message {
 
 	private byte[] payload;
@@ -52,12 +48,5 @@ public class Message {
 		
 		// A: oppdaterer objektvariabelen payload
 		this.payload= payloadNew;
-
-		// TODO
-		// decapsulate the data contained in the received byte array and store it 
-		// in the payload of this message
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
 	}
 }
