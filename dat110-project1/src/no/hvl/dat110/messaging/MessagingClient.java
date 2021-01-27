@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import no.hvl.dat110.TODO;
-
 public class MessagingClient {
 
 	private String server;
@@ -22,8 +20,6 @@ public class MessagingClient {
 
 	// connect to messaging server
 	public Connection connect() {
-
-		
 		Connection connection=null;
 		try {
 			Socket clientSocket = new Socket(server, port);
@@ -35,11 +31,6 @@ public class MessagingClient {
 			
 			e.printStackTrace();
 		}
-		
-
-		
-	
-
 		return connection;
 	}
 }
