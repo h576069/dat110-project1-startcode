@@ -3,7 +3,6 @@ package no.hvl.dat110.rpc;
 import java.io.IOException;
 import java.util.HashMap;
 
-import no.hvl.dat110.TODO;
 import no.hvl.dat110.messaging.Connection;
 import no.hvl.dat110.messaging.Message;
 import no.hvl.dat110.messaging.MessagingServer;
@@ -44,20 +43,25 @@ public class RPCServer {
 	    
 		   int rpcid;
 		   
-		   // TODO
-		   // - receive message containing RPC request
+		   // A: mottar melding over connection 
 		   Message m = connection.receive();
-		   // - find the identifier for the RPC methods to invoke
+
+		   // A: henter ut rpcid og lagrer payload data alene
 		   byte[] allData = m.getData();
 		   rpcid = allData[0];
-		   
-		   // - lookup the method to be invoked
-		   // - invoke the method
-		   // - send back message containing RPC reply
-			
-		   if (true) {
-			   throw new UnsupportedOperationException(TODO.method());
+		   byte[] data = new byte[allData.length-1];
+		   for (int i = 1; i < allData.length; i++) {
+			   data[i-1] = allData[i];
 		   }
+
+		   // A: finner metoden i hashmappet
+		   RPCImpl metode = this.services.get(rpcid);
+		   
+		   // A: utfører metoden
+		   byte[] resultat = metode.invoke(data);
+		   
+		   // A: sender svaret tilbake over connection
+		   connection.send(new Message(resultat));
 		   
 		   if (rpcid == RPCCommon.RPIDSTOP) {
 			   stop = true;
