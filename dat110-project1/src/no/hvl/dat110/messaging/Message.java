@@ -25,7 +25,6 @@ public class Message {
 
 	public byte[] encapsulate() {
 		
-//		byte[] encoded = null;
 		// A: setter lengden på payload til første byte
 		byte [] encoded = new byte[128];
 		encoded[0] = ((Integer) this.payload.length).byteValue();
@@ -34,19 +33,25 @@ public class Message {
 		for (int i = 0; i < this.payload.length; i++) {
 			encoded[i+1] = this.payload[i];
 		}
-		
-		// TODO
-		// encapulate/encode the payload of this message in the
-		// encoded byte array according to message format
-		
-//		if (true)
-//		   throw new UnsupportedOperationException(TODO.method());
 
 		return encoded;
 		
 	}
 
 	public void decapsulate(byte[] received) {
+		
+		// A: henter først ut lengden til payload data
+		int lengde = ((Byte) received[0]).intValue();
+		
+		// A: oppretter payload tabellen
+		byte[] payloadNew = new byte[lengde];
+		
+		// A: Setter inn verdiene
+		for (int i = 0; i < lengde; i++)
+			payloadNew[i] = received[i+1];
+		
+		// A: oppdaterer objektvariabelen payload
+		
 
 		// TODO
 		// decapsulate the data contained in the received byte array and store it 
