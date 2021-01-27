@@ -8,8 +8,6 @@ import java.net.Socket;
 import no.hvl.dat110.TODO;
 
 public class Connection {
-	
-	// Hei :)
 
 	private DataOutputStream outStream; // for writing bytes to the underlying TCP connection
 	private DataInputStream inStream; // for reading bytes from the underlying TCP connection
@@ -43,17 +41,19 @@ public class Connection {
 
 	public Message receive() {
 
-		Message message;
-		byte[] recvbuf;
+		// A: oppretter nytt message objekt
+		Message message = new Message();
 
-		// TODO
-		// read a segment (128 bytes) from the input stream and decapsulate into message
-		// Hint: create a new Message object and use the decapsulate method
-		
-		if (true) {
-			throw new RuntimeException("not yet implemented");
+		// A: leser alle bytes
+		byte[] recvbuf = null;
+		try {
+			recvbuf = inStream.readAllBytes();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
+		// A: decasulater og returnerer
+		message.decapsulate(recvbuf);
 		return message;
 
 	}
