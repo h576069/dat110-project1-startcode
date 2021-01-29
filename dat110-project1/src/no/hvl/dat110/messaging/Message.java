@@ -26,7 +26,7 @@ public class Message {
 		encoded[0] = ((Integer) this.payload.length).byteValue();
 		
 		// A: setter inn resten av byte-elementene fra payload til encoded
-		for (int i = 1; i < this.payload.length; i++) {
+		for (int i = 1; i <= this.payload.length; i++) {
 			encoded[i] = this.payload[i-1];
 		}
 
@@ -43,7 +43,7 @@ public class Message {
 		byte[] payloadNew = new byte[lengde];
 		
 		// A: Setter inn verdiene
-		for (int i = 1; i < lengde; i++)
+		for (int i = 1; i <= lengde; i++)
 			payloadNew[i-1] = received[i];
 		
 		// A: oppdaterer objektvariabelen payload
