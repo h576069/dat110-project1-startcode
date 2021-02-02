@@ -39,20 +39,18 @@ public class Connection {
 	}
 
 	public Message receive() {
-
 		// A: oppretter nytt message objekt
 		Message message = new Message();
 
 		// A: leser alle bytes
-		byte[] recvbuf = null;
+		byte[] recvbuf = new byte[127];
 		try {
-			recvbuf = inStream.readAllBytes();
+			inStream.read(recvbuf);
+			message.decapsulate(recvbuf);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		// A: decasulater og returnerer
-		message.decapsulate(recvbuf);
 		return message;
 
 	}
