@@ -16,7 +16,6 @@ public class RPCUtils {
 
 		byte[] encoded;
 		Charset charset = StandardCharsets.UTF_8;
-		// TODO: marshall RPC identifier and string into byte array
 		byte[] strbytes = str.getBytes(charset);
 		encoded = new byte[strbytes.length + 1];
 		encoded[0] = rpcid;

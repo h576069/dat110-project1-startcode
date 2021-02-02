@@ -70,12 +70,9 @@ public class RPCServer implements RPCImpl { // A: implementerer interface for å
 	// A: MÅ implementere invoke metoden fra RPCImpl.java
 	@Override
 	public byte[] invoke(byte[] request) {
-//		System.out.println("I INVOKE RPCServer");
 		int rpcid = request[0];
 		RPCImpl metode = this.services.get(rpcid);
-		System.out.println("Metode : " + metode);
 		
-//		System.out.println("req lengde: " + request.length);
 		byte[] resultat = metode.invoke(request);
 
 		// håndtere unmarshalling av parametre
