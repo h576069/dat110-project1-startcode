@@ -24,6 +24,7 @@ public class Sensor extends RPCStub {
 		temp = RPCUtils.unmarshallInteger(reply);
 
 		return temp;
+		
 	}
 
 }
