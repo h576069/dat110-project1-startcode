@@ -24,7 +24,6 @@ public class RPCUtils {
 			encoded[i + 1] = strbytes[i];
 
 		}
-		System.out.println(str);
 
 		return encoded;
 	}
