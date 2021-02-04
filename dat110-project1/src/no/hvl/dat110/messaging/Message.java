@@ -6,8 +6,11 @@ public class Message {
 
 	public Message(byte[] payload) {
 		// Payload har maks lengde på 127 byte
-		if (payload.length <= (MessageConfig.SEGMENTSIZE-1))
-			this.payload = payload; 
+//		if (payload.length <= (MessageConfig.SEGMENTSIZE-1))
+//			this.payload = payload; 
+		
+		/* PRØVER EKSTRA OPPGAVEN */
+		this.payload = payload;
 	}
 
 	public Message() {
@@ -20,7 +23,11 @@ public class Message {
 
 	public byte[] encapsulate() {
 		// A: setter lengden på payload til første byte
-		byte [] encoded = new byte[MessageConfig.SEGMENTSIZE];
+//		byte [] encoded = new byte[MessageConfig.SEGMENTSIZE];
+		
+		/* PRØVER EKSTRA OPPGAVEN */
+		byte[] encoded = new byte[this.payload.length + 1];
+		
 		encoded[0] = ((Integer) this.payload.length).byteValue();
 		
 		// A: setter inn resten av byte-elementene fra payload til encoded
@@ -45,6 +52,6 @@ public class Message {
 			payloadNew[i-1] = received[i];
 		
 		// A: oppdaterer objektvariabelen payload
-		this.payload= payloadNew;
+		this.payload = payloadNew;
 	}
 }
