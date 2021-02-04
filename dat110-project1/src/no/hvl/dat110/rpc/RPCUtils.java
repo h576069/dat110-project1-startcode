@@ -40,7 +40,6 @@ public class RPCUtils {
 
 		}
 		decoded = new String(utenRpcid, charset);
-		System.out.println(decoded);
 
 		return decoded;
 	}

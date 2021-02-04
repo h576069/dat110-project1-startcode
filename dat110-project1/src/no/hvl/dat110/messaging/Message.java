@@ -6,9 +6,8 @@ public class Message {
 
 	public Message(byte[] payload) {
 		// Payload har maks lengde på 127 byte
-		if (payload.length <= 127)
+		if (payload.length <= (MessageConfig.SEGMENTSIZE-1))
 			this.payload = payload; 
-		// A: hva hvis den er større?
 	}
 
 	public Message() {
@@ -20,9 +19,8 @@ public class Message {
 	}
 
 	public byte[] encapsulate() {
-		
 		// A: setter lengden på payload til første byte
-		byte [] encoded = new byte[128];
+		byte [] encoded = new byte[MessageConfig.SEGMENTSIZE];
 		encoded[0] = ((Integer) this.payload.length).byteValue();
 		
 		// A: setter inn resten av byte-elementene fra payload til encoded

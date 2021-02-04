@@ -32,7 +32,6 @@ public class Connection {
 		try {
 			outStream.write( message.encapsulate());
 		} catch (IOException e) {
-			
 			e.printStackTrace();
 		}
 
@@ -61,10 +60,8 @@ public class Connection {
 		try {
 			outStream.close();
 			inStream.close();
-
 			socket.close();
 		} catch (IOException ex) {
-
 			System.out.println("Connection: " + ex.getMessage());
 			ex.printStackTrace();
 		}

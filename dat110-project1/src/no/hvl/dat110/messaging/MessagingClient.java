@@ -14,8 +14,6 @@ public class MessagingClient {
 	public MessagingClient(String server, int port) {
 		this.server = server;
 		this.port = port;
-		System.out.println("Server="+ server);
-		System.out.println("port="+ port);
 	}
 
 	// connect to messaging server

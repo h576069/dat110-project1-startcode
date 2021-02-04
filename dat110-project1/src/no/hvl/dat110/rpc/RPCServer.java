@@ -74,10 +74,6 @@ public class RPCServer implements RPCImpl { // A: implementerer interface for å
 		RPCImpl metode = this.services.get(rpcid);
 		
 		byte[] resultat = metode.invoke(request);
-
-		// håndtere unmarshalling av parametre
-		// kalle på den ekte underliggende eksterne metoden for implementasjon
-		// marshalle retur verdien
 		return resultat;
 	}
 }
