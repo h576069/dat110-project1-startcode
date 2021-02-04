@@ -55,8 +55,7 @@ public class RPCUtils {
 
 	public static void unmarshallVoid(byte[] data) {
 		// A: mottar kun en void, så pakker bare ut id-en
-		// A: Som vi ikke trenger å pakke ut?
-		byte rpcid = data[0];
+		//byte rpcid = data[0];
 	}
 
 	public static byte[] marshallBoolean(byte rpcid, boolean b) {
@@ -103,9 +102,9 @@ public class RPCUtils {
 
 	public static int unmarshallInteger(byte[] data) {
 		// A: henter først ut rpcid
-		byte rpcid = data[0];
+//		byte rpcid = data[0];
 
-		// A: henter ut dataene:
+		// A: henter ut dataene (rpcid er første elementet og ser bort fra dette):
 		byte[] intData = new byte[data.length - 1];
 		for (int i = 1; i < data.length; i++) {
 			intData[i - 1] = data[i];
