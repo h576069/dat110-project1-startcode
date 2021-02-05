@@ -39,8 +39,14 @@ public class Controller  {
 		
 		// A: looper mens vi leser fra sensor og skriver til display
 		for (int i = 0; i < N; i++) {
-			int t = sensor.read();
-			display.write(Integer.toString(t));
+			int temp = sensor.read();
+			display.write(Integer.toString(temp));
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		stopdisplay.stop();
