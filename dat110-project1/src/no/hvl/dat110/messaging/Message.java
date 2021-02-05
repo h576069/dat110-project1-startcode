@@ -6,11 +6,8 @@ public class Message {
 
 	public Message(byte[] payload) {
 		// Payload har maks lengde på 127 byte
-//		if (payload.length <= (MessageConfig.SEGMENTSIZE-1))
-//			this.payload = payload; 
-
-		/* PRØVER EKSTRA OPPGAVEN */
-		this.payload = payload;
+		if (payload.length < MessageConfig.SEGMENTSIZE)
+			this.payload = payload;
 	}
 
 	public Message() {
@@ -23,22 +20,7 @@ public class Message {
 
 	public byte[] encapsulate() {
 		// A: setter lengden på payload til første byte
-//		byte [] encoded = new byte[MessageConfig.SEGMENTSIZE];
-
-		/* PRØVER EKSTRA OPPGAVEN */
-		/*
-		 * Der er fler måter å gjøre dette på, men tanken er at de enkelte segment
-		 * fortsatt har fast lengde på 128 men en må da sende fler segmenter om data
-		 * (payload) er på mer en 127 bytes og så ha en mekanisme via den første bytes
-		 * til å si om dette er siste segment slik det kan settes sammen til et fullt
-		 * payload i andre enden. Tema her er "fragmentation" som vi også kommer til
-		 * senere.
-		 */
-//		if (this.payload.length > MessageConfig.SEGMENTSIZE - 1) {
-//			
-//		}
-		byte[] encoded = new byte[this.payload.length + 1];
-
+		byte [] encoded = new byte[MessageConfig.SEGMENTSIZE];
 		encoded[0] = ((Integer) this.payload.length).byteValue();
 
 		// A: setter inn resten av byte-elementene fra payload til encoded
@@ -54,10 +36,6 @@ public class Message {
 
 		// A: henter først ut lengden til payload data
 		int lengde = ((Byte) received[0]).intValue();
-		
-		/* PRØVER EKSTRA OPPGAVEN */
-		if (lengde < 0) 
-			lengde += 2*128;
 
 		// A: oppretter payload tabellen
 		byte[] payloadNew = new byte[lengde];

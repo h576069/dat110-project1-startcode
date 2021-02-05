@@ -42,7 +42,7 @@ public class Connection {
 		Message message = new Message();
 
 		// A: leser alle bytes
-		byte[] recvbuf = new byte[128];
+		byte[] recvbuf = new byte[MessageConfig.SEGMENTSIZE];
 		try {
 			inStream.read(recvbuf);
 			message.decapsulate(recvbuf);
